@@ -25,22 +25,25 @@ int main(int argc, char **argv) {
   // PCA9685 initialization
   Init_PCA9685();
 
+  printf("Initial position\n");
   int j = 0;
-  PCA9685_Set_Rotation_Angle(0, 0);
-  PCA9685_Set_Rotation_Angle(1, 120);
-  DEV_Delay_ms(125);
+  PCA9685_Set_Rotation_Angle(0, 135);
+  PCA9685_Set_Rotation_Angle(1, 180);
+  DEV_Delay_ms(1250);
+
+  printf("Sweep\n");
   while (1) {
     for (i = 10; i < 135; i += 3) {
-      PCA9685_Set_Rotation_Angle(0, i);
-      DEV_Delay_ms(125);
+      PCA9685_Set_Rotation_Angle(0, 135 - i);
+      DEV_Delay_ms(4269);
     }
 
     j = (j + 10) % 70;
     PCA9685_Set_Rotation_Angle(1, 120 + j);
 
     for (i = 10; i < 135; i += 3) {
-      PCA9685_Set_Rotation_Angle(0, 135 - i);
-      DEV_Delay_ms(125);
+      PCA9685_Set_Rotation_Angle(0, i);
+      DEV_Delay_ms(4269);
     }
 
     j = (j + 10) % 70;
